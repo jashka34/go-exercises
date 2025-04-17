@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"solution/solution05"
+	"solution/solution07"
 )
 
 func main() {
-	fmt.Println(solution05.IntToString(5))
+	fmt.Println(solution07.IsValid(10, "str"))
 }

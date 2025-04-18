@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"solution/solution07"
+	"solution/solution09"
 )
 
 func main() {
-	fmt.Println(solution07.IsValid(10, "str"))
+	fmt.Println(solution09.DomainForLocale("site.com", "ru"))
 }

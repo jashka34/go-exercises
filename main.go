@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println(solution09.DomainForLocale("site.com", "ru"))
+	fmt.Println(solution09.DomainForLocale("code-basics.com", "ru"))
 }

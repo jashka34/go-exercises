@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"solution/solution09"
+	"solution/solution10"
 )
 
 func main() {
-	fmt.Println(solution09.DomainForLocale("code-basics.com", "ru"))
+	fmt.Println(solution10.ModifySpaces("aaa bbb ccc", "dash"))
 }

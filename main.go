@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 
-	"solution/solution10"
+	"solution/solution11"
 )
 
 func main() {
-	fmt.Println(solution10.ModifySpaces("aaa bbb ccc", "dash"))
+	r := solution11.UserCreateRequest{}
+	fmt.Println(solution11.Validate(r))
 }

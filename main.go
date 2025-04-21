@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"solution/solution11"
+	"solution/solution12"
 )
 
 func main() {
-	r := solution11.UserCreateRequest{}
-	fmt.Println(solution11.Validate(r))
+	// r := solution11.UserCreateRequest{}
+	fmt.Println(solution12.ErrorMessageToCode("err"))
 }

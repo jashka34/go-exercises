@@ -1,22 +1,26 @@
 package solution18
 
 import (
-	"fmt"
 	"sort"
 )
 
 func UniqueSortedUserIDs(userIDs []int64) []int64 {
+	if len(userIDs) <= 1 {
+		return userIDs
+	}
 	sort.SliceStable(userIDs, func(i, j int) bool { return userIDs[i] < userIDs[j] })
 
-	// prevId int;
-	for i, id := range userIDs {
-		fmt.Println(i, ":", id)
+	uniq := 0
+	for i := range userIDs {
+		// fmt.Println(i, ":", id, "uniq:", uniq)
 		if i > 0 {
-			if userIDs[i-1] == userIDs[i] {
-				fmt.Println("ops: ", userIDs[i])
+			if userIDs[i] != userIDs[uniq] {
+				uniq++
+				userIDs[uniq] = userIDs[i]
+				// fmt.Println("userIDs:", userIDs)
 			}
 		}
 	}
 
-	return userIDs
+	return userIDs[:uniq+1]
 }

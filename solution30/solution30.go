@@ -1,6 +1,10 @@
 package solution30
 
-import "errors"
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+)
 
 type CreateUserRequest struct {
 	Email                string `json:"email"`
@@ -17,5 +21,18 @@ var (
 
 func DecodeAndValidateRequest(requestBody []byte) (CreateUserRequest, error) {
 	var cur CreateUserRequest
-	return cur, nil
+	err := json.Unmarshal(requestBody, &cur)
+	fmt.Printf("cur: %+v\n", cur)
+	if cur.Email == "" {
+		err = errEmailRequired
+	} else if cur.Password == "" {
+		err = errPasswordRequired
+	} else if cur.Password != cur.PasswordConfirmation {
+		err = errPasswordDoesNotMatch
+	}
+	fmt.Println("err:", err)
+	if err != nil {
+		cur = CreateUserRequest{}
+	}
+	return cur, err
 }

@@ -3,7 +3,6 @@ package solution30
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 )
 
 type CreateUserRequest struct {
@@ -22,15 +21,17 @@ var (
 func DecodeAndValidateRequest(requestBody []byte) (CreateUserRequest, error) {
 	var cur CreateUserRequest
 	err := json.Unmarshal(requestBody, &cur)
-	fmt.Printf("cur: %+v\n", cur)
+	// fmt.Printf("cur: %+v\n", cur)
 	if cur.Email == "" {
 		err = errEmailRequired
 	} else if cur.Password == "" {
 		err = errPasswordRequired
+	} else if cur.PasswordConfirmation == "" {
+		err = errPasswordConfirmationRequired
 	} else if cur.Password != cur.PasswordConfirmation {
 		err = errPasswordDoesNotMatch
 	}
-	fmt.Println("err:", err)
+	// fmt.Println("err:", err)
 	if err != nil {
 		cur = CreateUserRequest{}
 	}

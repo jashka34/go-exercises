@@ -1,6 +1,8 @@
 package solution31
 
-import "errors"
+import (
+	"errors"
+)
 
 type nonCriticalError struct{}
 
@@ -16,5 +18,10 @@ var (
 const unknownErrorMsg = "unknown error"
 
 func GetErrorMsg(err error) string {
-	return ""
+	if errors.As(err, &nonCriticalError{}) {
+		return ""
+	} else if errors.Is(err, errBadConnection) || errors.Is(err, errBadRequest) {
+		return err.Error()
+	}
+	return (unknownErrorMsg)
 }

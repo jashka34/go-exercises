@@ -20,8 +20,10 @@ const unknownErrorMsg = "unknown error"
 func GetErrorMsg(err error) string {
 	if errors.As(err, &nonCriticalError{}) {
 		return ""
-	} else if errors.Is(err, errBadConnection) || errors.Is(err, errBadRequest) {
-		return err.Error()
+	} else if errors.Is(err, errBadConnection) {
+		return errBadConnection.Error()
+	} else if errors.Is(err, errBadRequest) {
+		return errBadRequest.Error()
 	}
 	return (unknownErrorMsg)
 }

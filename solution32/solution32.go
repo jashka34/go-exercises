@@ -1,6 +1,9 @@
 package solution32
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // MergeDictsJob is a job to merge dictionaries into a single dictionary.
 type MergeDictsJob struct {
@@ -17,5 +20,8 @@ var (
 
 func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
 	var ret MergeDictsJob
+	for i, v := range job.Dicts {
+		fmt.Println(i, ":", v)
+	}
 	return &ret, nil
 }

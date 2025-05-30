@@ -18,8 +18,12 @@ var (
 	errNilDict        = errors.New("nil dictionary")
 )
 
+func finish(job *MergeDictsJob) {
+	job.IsFinished = true
+}
+
 func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
-	defer job.IsFinished = true
+	defer finish(job)
 	fmt.Println("job: ", job)
 	if job == nil || job.Dicts == nil {
 		// fmt.Println("ret1")

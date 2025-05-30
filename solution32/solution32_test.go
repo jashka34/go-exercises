@@ -19,13 +19,13 @@ func TestExecuteMergeDictsJob(t *testing.T) {
 	a.Equal(errNotEnoughDicts, err)
 	a.Equal(true, job.IsFinished)
 
-	// job, err = ExecuteMergeDictsJob(&MergeDictsJob{Dicts: []map[string]string{
-	// 	{"a": "b"},
-	// 	nil,
-	// }})
-	// a.Equal(errNilDict, err)
-	// a.Equal(true, job.IsFinished)
-	//
+	job, err = ExecuteMergeDictsJob(&MergeDictsJob{Dicts: []map[string]string{
+		{"a": "b"},
+		nil,
+	}})
+	a.Equal(errNilDict, err)
+	a.Equal(true, job.IsFinished)
+
 	// job, err = ExecuteMergeDictsJob(&MergeDictsJob{Dicts: []map[string]string{
 	// 	{"a": "b", "b": "c"},
 	// 	{"d": "e", "f": "g"},

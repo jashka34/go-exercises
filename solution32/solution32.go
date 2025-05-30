@@ -19,6 +19,17 @@ var (
 )
 
 func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
+	defer job.IsFinished = true
+	fmt.Println("job: ", job)
+	if job == nil || job.Dicts == nil {
+		// fmt.Println("ret1")
+		// fmt.Println("ret11")
+		return job, errNotEnoughDicts
+	}
+	if len(job.Dicts) < 2 {
+		fmt.Println("ret2")
+		return job, errNotEnoughDicts
+	}
 	var ret MergeDictsJob
 	for i, v := range job.Dicts {
 		fmt.Println(i, ":", v)

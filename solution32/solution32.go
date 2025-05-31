@@ -24,7 +24,7 @@ func finish(job *MergeDictsJob) {
 
 func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
 	defer finish(job)
-	fmt.Println("job: ", job)
+	fmt.Println("--------\njob: ", job)
 	if job == nil || job.Dicts == nil {
 		// fmt.Println("ret1")
 		// fmt.Println("ret11")
@@ -35,8 +35,20 @@ func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
 		return job, errNotEnoughDicts
 	}
 	var ret MergeDictsJob
+	ret.Merged = make(map[string]string)
+	defer finish(&ret)
 	for i, v := range job.Dicts {
-		fmt.Println(i, ":", v)
+		if v != nil {
+			fmt.Println(i, ":", v)
+			for ii, vv := range v {
+				fmt.Println("  ", ii, ":", vv)
+				ret.Merged[ii] = vv
+				fmt.Println("  merged!")
+			}
+		} else {
+			fmt.Println("ret3")
+			return &ret, errNilDict
+		}
 	}
 	return &ret, nil
 }

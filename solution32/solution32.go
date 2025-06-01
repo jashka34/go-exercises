@@ -2,7 +2,6 @@ package solution32
 
 import (
 	"errors"
-	"fmt"
 )
 
 // MergeDictsJob is a job to merge dictionaries into a single dictionary.
@@ -24,31 +23,30 @@ func finish(job *MergeDictsJob) {
 
 func ExecuteMergeDictsJob(job *MergeDictsJob) (*MergeDictsJob, error) {
 	defer finish(job)
-	fmt.Println("--------\njob: ", job)
+	// fmt.Println("--------\njob: ", job)
 	if job == nil || job.Dicts == nil {
 		// fmt.Println("ret1")
 		// fmt.Println("ret11")
 		return job, errNotEnoughDicts
 	}
 	if len(job.Dicts) < 2 {
-		fmt.Println("ret2")
+		// fmt.Println("ret2")
 		return job, errNotEnoughDicts
 	}
-	var ret MergeDictsJob
-	ret.Merged = make(map[string]string)
-	defer finish(&ret)
-	for i, v := range job.Dicts {
+	job.Merged = make(map[string]string)
+	// defer finish(&job)
+	for _, v := range job.Dicts {
 		if v != nil {
-			fmt.Println(i, ":", v)
+			// fmt.Println(i, ":", v)
+			// maps.Copy(job.Merged, v)
 			for ii, vv := range v {
-				fmt.Println("  ", ii, ":", vv)
-				ret.Merged[ii] = vv
-				fmt.Println("  merged!")
+				// fmt.Println("  ", ii, ":", vv)
+				job.Merged[ii] = vv
 			}
 		} else {
-			fmt.Println("ret3")
-			return &ret, errNilDict
+			// fmt.Println("ret3")
+			return job, errNilDict
 		}
 	}
-	return &ret, nil
+	return job, nil
 }

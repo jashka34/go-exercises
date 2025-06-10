@@ -3,7 +3,6 @@ package solution35
 func sum1(nums []int) int {
 	var sum int
 	for _, i := range nums {
-		// fmt.Println(i, sum)
 		sum += i
 	}
 	return sum

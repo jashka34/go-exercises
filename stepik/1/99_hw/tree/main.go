@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func dirTree(out io.Writer, path string, printFiles bool) error {
+func dirTree2(out io.Writer, path string, printFiles bool, indent int) error {
 	files, err := os.ReadDir(path)
 	if err != nil {
 		log.Fatal(err)
@@ -16,17 +16,22 @@ func dirTree(out io.Writer, path string, printFiles bool) error {
 
 	for _, file := range files {
 		fullPath := filepath.Join(path, file.Name())
-		fmt.Println(fullPath)
 		fi, err := os.Stat(fullPath)
+		fmt.Println(indent, "->", fullPath, "(", fi.Size(), ")")
+		// out.Write([]byte(fullPath + "\n"))
 		if err != nil {
 			log.Fatal(err)
 		}
 		if fi.IsDir() {
 			// fmt.Println("dir!!!")
-			dirTree(out, fullPath, printFiles)
+			dirTree2(out, fullPath, printFiles, indent+1)
 		}
 	}
 	return nil
+}
+
+func dirTree(out io.Writer, path string, printFiles bool) error {
+	return dirTree2(out, path, printFiles, 1)
 }
 
 func main() {
